@@ -3,6 +3,12 @@
 # Dada uma lista e um valor de busca, percorre a lista verificando se cada elemento da lista corresponde ao valor de busca.
 # A busca para quando o valor de busca é encontrada ou quando a lista é totalmente percorrida, sem encontrar o valor de busca.
 
+# Número de comparações em uma lista de n elementos
+# Quando um elemento existe: pos + 1 comparações
+# Quando um elemento não existe: n comparações
+
+from time import time
+
 from data.lista_nomes import nomes
 
 def busca_sequencial(lista, valor_busca):
@@ -107,13 +113,31 @@ print(f"Número de elementos da Lista: {len(primos)}")
 
 
 
-
+hora_ini = time()
 print(f"Posição de FAUSTO: {busca_sequencial(nomes, 'FAUSTO')}")
+hora_fim = time()
+print(f"Tempo gasto procurando FAUSTO: {(hora_fim - hora_ini) * 1000}ms")
 
+hora_ini = time()
 print(f"Posição de ZULEICA: {busca_sequencial(nomes, 'ZULEICA')}")
+hora_fim = time()
+print(f"Tempo gasto procurando ZULEICA: {(hora_fim - hora_ini) * 1000}ms")
 
-print(f"Posição de ORKUTILSON: {busca_sequencial(nomes, 'ORKUTILSON')}")
+hora_ini = time()
+print(f"Posição de BELERINA: {busca_sequencial(nomes, 'BELERINA')}")
+hora_fim = time()
+print(f"Tempo gasto procurando BELERINA: {(hora_fim - hora_ini) * 1000}ms")
 
 busca = 'Orkutilson' # Na lista original todos os nomes estão em maiusculo, caso não estejam o comando .upper() coloca todas as letras em maiúsculo, aplicação na linha abaixo
 
 print(f"Posição de {busca.upper()}: {busca_sequencial(nomes, busca.upper())}")
+
+# Código feito pelo Tiago
+
+busca = "TIAGO"
+print(f"O nome {busca} está na posicção: ")
+hora_ini = time()
+posicao = busca_sequencial(nomes,busca)
+hora_fim=time()
+print(posicao)
+print(f"\nTempo Gasto procurando {busca}: {(hora_fim-hora_ini)*1000}ms")
