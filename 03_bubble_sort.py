@@ -1,0 +1,26 @@
+# ALGORITMO DE ORDENAÇAO BUBBLE SORT
+
+# Percorre a lista a ser ordenada em sucessivas passadas, trocando elementos adjaventes entre si quando o segundo menos que o primeiro
+
+
+
+
+def bubble_sort(lista):
+    '''
+        Função que implementa o algortimo de ordenação Bubble Sort
+    '''
+    while True: # Loop eterno
+        trocou = False
+        # Loop na lista até o PENÚLTIMO elemento: len(lista) -1
+        # Ex: em uma lista de 10 elementos, len(lista) == 10
+        # A última posição estará em len(lista) -1, ou seja 9
+        # A penúltima posição estará em len(lista) -2, ou seja, 8
+        for i in range(len(lista) - 2): # Inicia nova troca
+            if lista[i + 1] < lista[1]: # É necessário trocar
+                lista[i + 1], lista[i] = lista[i], lista[i + 1] # Faz a troca
+                trocou = True
+        
+        # Se houve troca, a lista está ordenada e podemos interromper o loop while
+
+        if not trocou:
+            break # Interrompe o while

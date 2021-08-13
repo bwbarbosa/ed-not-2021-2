@@ -124,9 +124,9 @@ hora_fim = time()
 print(f"Tempo gasto procurando ZULEICA: {(hora_fim - hora_ini) * 1000}ms")
 
 hora_ini = time()
-print(f"Posição de BELERINA: {busca_sequencial(nomes, 'BELERINA')}")
+print(f"Posição de AARAO: {busca_sequencial(nomes, 'AARAO')}")
 hora_fim = time()
-print(f"Tempo gasto procurando BELERINA: {(hora_fim - hora_ini) * 1000}ms")
+print(f"Tempo gasto procurando AARAO: {(hora_fim - hora_ini) * 1000}ms")
 
 busca = 'Orkutilson' # Na lista original todos os nomes estão em maiusculo, caso não estejam o comando .upper() coloca todas as letras em maiúsculo, aplicação na linha abaixo
 
