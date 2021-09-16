@@ -8,7 +8,7 @@
 class FormaGeometrica():
 
     # Dados
-    # Quando pertencem a uma classe, ganham o nome de 
+        # Quando pertencem a uma classe, ganham o nome de 
 
     # ATRIBUTOS
     base = 0
@@ -21,6 +21,7 @@ class FormaGeometrica():
     # Algoritmos
     # São representados por funções que, quando se encontram
     # dentro de uma classe, ganham o nome de MÉTODOS
+
     # Este método é executado quando um objeto é criado a partir
     # de uma classe (construtor)
     def __init__(self, base, altura, tipo = "R"):
