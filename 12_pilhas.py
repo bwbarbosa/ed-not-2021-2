@@ -35,3 +35,4 @@ print(inverso)
 # regra LIFO (last in, first out - último a entrar, primeiro a sair), e tem
 # acesso limitado aos seus elementos.
 # 
+## 2 + { 3 - [ 5 * ( 2 + 7 ) } ]
