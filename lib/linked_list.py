@@ -27,7 +27,7 @@ class LinkedList:
         Construtor da classe
     """
     def __init__(self):
-        self.__head = None      # (calda) Ponteiro para o primeiro nodo da lista
+        self.__head = None      # (cabeça) Ponteiro para o primeiro nodo da lista
         self.__tail = None      # (cauda) Ponteiro para o último nodo da lista
         self.__count = 0        # Contador de nodos
 
@@ -114,7 +114,7 @@ class LinkedList:
         return -1 # Não encontrou
 
     """
-        Método que exibe a lista como uma string (para fins de depuraçao)
+        Método para remover um elemento da lista
     """
     def to_str(self):
         string = ""
