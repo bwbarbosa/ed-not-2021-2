@@ -1,6 +1,6 @@
 from lib.queue import Queue
 
-fila = Queue()  # Cria uma nova fila
+fila = Queue()      # Cria uma nova fila
 print(fila.to_str())
 
 # Adicionando pessoas à fila
@@ -18,7 +18,7 @@ print(fila.to_str())
 
 atendido = fila.dequeue()
 print(f"Atendido: {atendido}")
-print(fila.to.str)
+print(fila.to_str())
 
 fila.enqueue("Adenoirton")
 print(fila.to_str())

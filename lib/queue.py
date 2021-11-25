@@ -39,7 +39,7 @@ class Queue:
     """
     def peek(self):
         if self.is_empty(): return None
-        return self.__Data[0]
+        return self.__data[0]
 
     """
         Método para verificar se a fila está vazia ou não
