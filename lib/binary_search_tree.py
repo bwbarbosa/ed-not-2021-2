@@ -1,7 +1,7 @@
 """
     Classe que representa cada unidade (elemento) da árvore binária de busca
     É dividida em três partes:
-    1) Onde fica armezada a informação relevante para o usuário (data)
+    1) Onde fica armezenada a informação relevante para o usuário (data)
     2) O ponteiro para a subárvore esquerda (left)
     3) O ponteiro para a subárvore direita (right)
 """
@@ -11,15 +11,15 @@ class Node:
         self.left = None
         self.right = None
 
-"""    
-    ESTRUTURA DE DADOS ÁRVORE BINÁRIA DE BUSCA    
-    - Árvore ~> é uma estrutura de dados não-linear, hierárquica,      
-      que é formada recursivamente por outras subárvores.    
-    - Árvore binária ~> uma árvore na qual cada nodo tem grau máximo      
-      igual a 2 (ou seja, cada nodo pode ter, no máximo, dois descendentes      
-      diretos).    
-    - Árvore binária de busca ~> é uma árvore binária otimizada para a      
-      operação de busca binária. Por isso, na inserção, os valores são       
+"""
+    ESTRUTURA DE DADOS ÁRVORE BINÁRIA DE BUSCA
+    - Árvore ~> é uma estrutura de dados não-linear, hierárquica,
+      que é formada recursivamente por outras subárvores.
+    - Árvore binária ~> uma árvore na qual cada nodo tem grau máximo
+      igual a 2 (ou seja, cada nodo pode ter, no máximo, dois descendentes
+      diretos).
+    - Árvore binária de busca ~> é uma árvore binária otimizada para a
+      operação de busca binária. Por isso, na inserção, os valores são 
       colocados já em ordem.
 """
 class BinarySearchTree:
@@ -28,7 +28,7 @@ class BinarySearchTree:
         Construtor da classe
     """
     def __init__(self):
-        self.__root = None     # Raiz da árvore
+        self.__root = None      # Raiz da árvore
 
     """
         Método PÚBLICO de inserção na árvore
@@ -46,14 +46,14 @@ class BinarySearchTree:
     """
         Método __privado para inserção de um nodo na árvore
     """
-    def __insert_node(self, node, root):
+    def __insert_node(self, inserted, root):
         # 1º caso: valor do nodo é MENOR que o valor da raiz ~> vai para a ESQUERDA
-        if node.data < root.data:
-            # se o nodo da equerda estiver desocupado, faz aí a inserção
-            if root.left is None: root.left = node
+        if inserted.data < root.data:
+            # Se o nodo da esquerda estiver desocupado, faz aí a inserção
+            if root.left is None: root.left = inserted
             # Senão, passa a considerar o nodo da esquerda como raiz
             else: self.__insert_node(inserted, root.left)
-
+        
         # 2º caso: valor do nodo é MAIOR que o valor da raiz ~> vai para a DIREITA
         elif inserted.data > root.data:
             # Se o nodo da direita estiver desocupado, faz aí a inserção
@@ -119,9 +119,9 @@ class BinarySearchTree:
         if root is False: root = self.__root
 
         if root is not None:
-                    fnCallback(root.data)   # 1º
-                    self.pre_order_traversal(fnCallback, root.left) # 2º
-                    self.pre_order_traversal(fnCallback, root.right) # 3º
+            fnCallback(root.data)   # 1º
+            self.pre_order_traversal(fnCallback, root.left) # 2º
+            self.pre_order_traversal(fnCallback, root.right) # 3º
 
     """
         Método que faz o percurso pós-ordem (post-order traversal)
@@ -241,58 +241,21 @@ class BinarySearchTree:
 
         # 4.4: remoção do nodo de grau 2
 
+        # Precisamos encontrar:
+        # a) O MAIOR nodo da subárvore ESQUERDA; *ou*
+        # b) O MENOR nodo da subárvore DIREITA
 
-######################################################################
+        # Nossa opção: usar o maior nodo da subárvore esquerda
+        new_root = self.__max_node(root.left)
+        # Ou: new_root = self.__min_node(root.right)
 
-arvore = BinarySearchTree()
+        # Copia o valor do nodo encontrado para o nodo que está
+        # sendo "removido"
+        root.data = new_root.data
 
-arvore.insert(43)
-arvore.insert(27)
-arvore.insert(64)
-arvore.insert(36)
-arvore.insert(10)
-arvore.insert(0)
+        # Exclui o valor duplicado que está na subárvore esquerda
+        # (de onde veio o valor de new_root)
+        root.left = self.__remove_node(root.left, new_root.data)
+        # Ou: root.right = self.__remove_node(root.right, new_root.data)
 
-print(arvore.to_str())
-
-em_ordem = []
-
-def insere_em_ordem(val):
-    em_ordem.append(val)
-
-#arvore.in_order_traversal(insere_em_ordem)
-arvore.in_order_traversal(lambda val: em_ordem.append(val))
-#arvore.in_order_traversal(lambda val: print(val))
-
-print('Percurso em-ordem:', em_ordem)
-
-sumario = BinarySearchTree()
-
-sumario.insert('2')
-sumario.insert('1')
-sumario.insert('3')
-sumario.insert('1.1')
-sumario.insert('3.1')
-sumario.insert('2.1')
-sumario.insert('2.1.1')
-
-em_ordem = []
-sumario.in_order_traversal(lambda val: em_ordem.append(val))
-print('Sumário em-ordem:', em_ordem)
-
-pre_ordem = []
-sumario.pre_order_traversal(lambda val: pre_ordem.append(val))
-print('Sumário pré-ordem:', pre_ordem)
-
-pre_ordem = []
-arvore.pre_order_traversal(lambda val: pre_ordem.append(val))
-print('Árvore pré-ordem:', pre_ordem)
-
-pos_ordem = []
-arvore.post_order_traversal(lambda val: pos_ordem.append(val))
-print('Árvore pós-ordem:', pos_ordem)
-
-existe36 = arvore.exists(36)
-existe51 = arvore.exists(51)
-existe64 = arvore.exists(64)
-print(f'36: {existe36}, 51: {existe51}, 64: {existe64}')
+        return root
